@@ -102,8 +102,8 @@ runs:
     - uses: actions/setup-python@v6
       with:
         python-version: '3.12'
-        cache: pip
-        cache-dependency-path: ${{ github.action_path }}/requirements.txt
+        # The downloaded Action lives outside the caller's GITHUB_WORKSPACE.
+        # setup-python cache hashing cannot read its requirements there.
     - name: Install taiko-github-profile dependencies
       shell: bash
       env:
