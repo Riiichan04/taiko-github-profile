@@ -1,0 +1,35 @@
+# Copy to .github/workflows/test-taiko.yml in a caller repository.
+# Replace OWNER with the owner of the public taiko-github-profile repository.
+name: Try taiko-github-profile
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: GitHub username (empty uses repository owner)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: OWNER/taiko-github-profile@main
+        with:
+          username: ${{ inputs.username || github.repository_owner }}
+          github-token: ${{ secrets.CONTRIBUTIONS_TOKEN || github.token }}
+          bpm: '200'
+          outputs: |
+            dist/taiko.svg?background=original
+            dist/taiko-festival.svg?background=festival
+      - uses: actions/upload-artifact@v7
+        with:
+          name: taiko-preview
+          path: dist/*.svg
+          if-no-files-found: error
+          retention-days: 7

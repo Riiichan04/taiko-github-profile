@@ -1,0 +1,13 @@
+// Original demo: 4 bars, 8 seconds. 0=rest, 1=Don, 2=Ka.
+TITLE:README Demo
+BPM:120
+COURSE:Oni
+LEVEL:3
+
+#START
+// Each comma ends a measure, regardless of line breaks.
+1121,
+12102020,
+10201120,
+1211,
+#END

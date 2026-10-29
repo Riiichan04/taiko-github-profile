@@ -1,0 +1,19 @@
+__pycache__/
+.venv/
+
+.qa/
+
+# Local experiment outputs; publish chosen examples explicitly under assets/.
+generated/
+generated/previews/
+generated/renders/
+generated/**/*.gif
+generated/**/*.png
+generated/**/*.svg
+
+# Composite Action local output/cache.
+dist/
+.taiko-cache/
+.qa
+
+benchmarks

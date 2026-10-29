@@ -1,0 +1,25 @@
+// Spaces only group notes visually; commas end measures.
+TITLE:Streams and Sixths
+BPM:120
+COURSE:Oni
+LEVEL:7
+
+#START
+// 4 slots: one note per beat.
+1212,
+// 8 slots: half beats.
+1122 1212,
+// Stream: 16 slots, quarter beats.
+1221 1221 1122 1122,
+// 24 slots: sixth beats.
+122122 122122 122122 122122,
+// Mix quarter-beat notes and a sixth-beat burst using short measures.
+#MEASURE 1/4
+1212,
+121212,
+#MEASURE 2/4
+0,
+#MEASURE 4/4
+// Empty measure: four beats of silence.
+,
+#END

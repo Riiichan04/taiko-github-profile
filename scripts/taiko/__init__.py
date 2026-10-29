@@ -1,0 +1,1 @@
+"""Procedural Taiko rendering components."""
