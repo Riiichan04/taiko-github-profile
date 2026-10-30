@@ -114,6 +114,31 @@ Nếu sửa TJA tự sinh, cần tạo lại cặp file hoặc bỏ sidecar đ�
 
 ## Tự viết chart TJA
 
+Để dùng TJA qua Action, commit file `charts/custom.tja` vào **repo gọi Action** (ví dụ repo profile), rồi thay bước tạo chart contribution bằng:
+
+```yaml
+- uses: actions/checkout@v6
+- uses: OWNER/taiko-github-profile@main
+  with:
+    chart: charts/custom.tja
+    outputs: |
+      taiko/taiko.svg?background=original
+      taiko/taiko-festival.svg?background=festival
+```
+
+Đường dẫn tính từ repo vừa checkout, không phải repo Action. Có `chart` thì bỏ qua fetch contribution và tạo chart tự động, không cần token API contribution. BPM lấy từ TJA, không bị input `bpm` của Action ghi đè. Không kết hợp `chart` với `snapshot`. Giữ bước commit ảnh hiện tại để publish kết quả. Chart đơn giản để thử:
+
+```text
+TITLE:Custom test
+BPM:120
+#START
+1212,
+11221122,
+50000008,
+0000,
+#END
+```
+
 Dùng [charts/demo.tja](../charts/demo.tja) làm ví dụ cơ bản. [charts/patterns.tja](../charts/patterns.tja) minh họa stream, trộn nhịp, 1/6 và nghỉ. Chart custom vẫn có thể dùng 1/6 dù generator contribution không sinh kiểu này.
 
 - `0`: nghỉ; `1`: Don; `2`: Ka; `5`: bắt đầu drumroll; `8`: kết thúc.

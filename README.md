@@ -114,6 +114,31 @@ If you edit generated TJA, regenerate the pair or remove the sidecar to use ordi
 
 ## Write a custom TJA chart
 
+To use a custom chart in the Action, commit `charts/custom.tja` in the **caller repository** (for example, your profile repo), then replace the contribution-generation step with:
+
+```yaml
+- uses: actions/checkout@v6
+- uses: OWNER/taiko-github-profile@main
+  with:
+    chart: charts/custom.tja
+    outputs: |
+      taiko/taiko.svg?background=original
+      taiko/taiko-festival.svg?background=festival
+```
+
+The path is relative to the checked-out caller repository, not the Action repository. `chart` skips contribution fetching and generation; no contribution API token is needed. Timing comes from the TJA's `BPM`, not the Action's `bpm` input. Do not combine `chart` with `snapshot`. Keep your existing image commit step to publish the results. For a quick test chart:
+
+```text
+TITLE:Custom test
+BPM:120
+#START
+1212,
+11221122,
+50000008,
+0000,
+#END
+```
+
 Use [charts/demo.tja](charts/demo.tja) as a simple example. [charts/patterns.tja](charts/patterns.tja) demonstrates streams, mixed subdivisions, sixths and rests; custom charts can use sixths even though the contribution generator does not generate them.
 
 - `0`: rest; `1`: Don; `2`: Ka; `5`: start a drumroll; `8`: end it.
